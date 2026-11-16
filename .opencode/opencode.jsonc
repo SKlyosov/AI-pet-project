@@ -19,5 +19,27 @@
     { "action": "glob", "resource": "*", "effect": "allow" },
     { "action": "grep", "resource": "*", "effect": "allow" },
     { "action": "external_directory", "resource": "*", "effect": "ask" }
-  ]
+  ],
+  "permission": {
+    "read": {
+      "C:/Projects/otus/AI-pet-project/.opencode/gsd-core/*": "allow"
+    },
+    "external_directory": {
+      "C:/Projects/otus/AI-pet-project/.opencode/gsd-core/*": "allow"
+    }
+  },
+  "mcp": {
+    "gsd": {
+      "type": "local",
+      "command": [
+        "npx",
+        "-y",
+        "-p",
+        "@opengsd/gsd-core",
+        "gsd-mcp-server",
+        "--no-prompts"
+      ],
+      "enabled": true
+    }
+  }
 }
