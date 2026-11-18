@@ -3,16 +3,16 @@ gsd_state_version: "1.0"
 current_phase: 1
 current_phase_name: Фундамент — выбор стека и скелет проекта
 status: executing
-stopped_at: Completed-01-02-PLAN.md
-last_updated: "2026-11-18T09:15:02.007Z"
+stopped_at: Completed 01-03-PLAN.md
+last_updated: "2026-11-18T09:48:26.993Z"
 last_activity: 2026-11-18
 last_activity_desc: Phase 1 execution started
-state_head: f87df644caf3a2f4a5f3c1b53e2953260e187919
+state_head: 6612428849f4c1b0b332eec916d6b07e665694e8
 progress:
   total_phases: 10
   completed_phases: 0
   total_plans: 4
-  completed_plans: 2
+  completed_plans: 3
   percent: 0
 ---
 
@@ -28,7 +28,7 @@ See: .planning/PROJECT.md (updated 2026-11-18)
 ## Current Position
 
 Phase: 1 (Фундамент — выбор стека и скелет проекта) — EXECUTING
-Plan: 3 of 4
+Plan: 4 of 4
 Status: Ready to execute
 Last activity: 2026-11-18 — Phase 1 execution started
 
@@ -58,6 +58,7 @@ Progress: [░░░░░░░░░░] 0%
 |------|----------|-------|-------|
 | Phase 01 P01 | 6min | 2 tasks | 8 files |
 | Phase 01 P02 | 26min | 2 tasks | 23 files |
+| Phase 01 P03 | 24min | 3 tasks | 23 files |
 
 ## Accumulated Context
 
@@ -75,6 +76,9 @@ Recent decisions affecting current work:
 - [Phase 01]: 01-02: /healthz registered both with and without trailing slash — Probe targets (curl in the verify chain, compose healthcheck urllib) request /healthz without a slash; with only healthz/ registered Django APPEND_SLASH answers 301 with an empty body, which fails the "curl prints ok" gate. The alias serves 200 JSON directly; the key_link pattern path("healthz/", healthz) is preserved.
 - [Phase 01]: 01-02: compose host ports 127.0.0.1:15432/16379 and pgdata mounted at /var/lib/postgresql — Host-local PostgreSQL (PID 19092) and Redis (PID 35872) already bind 5432/6379 on this machine; user services were not touched, loopback-only posture (T-01-04) kept, in-network addressing (db:5432, cache:6379) unchanged. postgres:18+ images reject a direct /var/lib/postgresql/data mount and require the versioned layout at /var/lib/postgresql (docker-library/postgres PR #1259).
 - [Phase 01]: 01-02: config/settings/base.py carries explicit DEBUG=False and ALLOWED_HOSTS=[] safe defaults — The plan pinned DEBUG/ALLOWED_HOSTS only for dev; explicit safe defaults in base follow the Django deployment checklist and ASVS V14 so a missing override can never silently enable debug.
+- [Phase 01]: D-04 materialized: 7 domain apps are empty AppConfig scaffolds (no models.py/migrations) — module boundaries are fixed while cheap, before any domain tables exist — Pattern 3 research: boundaries get more expensive with every foreign table; Pattern 4: first migration needs no fake schema — accounts gets custom User in Phase 2 before user data exists (ADR-0001)
+- [Phase 01]: docker compose run executes image-baked code, not the working tree — rebuild (docker compose build web) after code changes before re-running compose-run gates — Found when prod.py check hit ModuleNotFoundError on a freshly written module: the 01-02 image predated it; all Task gates were re-run green on the rebuilt image and the rule is documented in README/AGENTS.md
+- [Phase 01]: SECURE_BROWSER_XSS_FILTER from the plan is not set: the setting was removed in Django 4.0 and is absent from Django 5.2 (verified against django.conf.global_settings); XSS mitigation for template phases is Content-Security-Policy — Setting an inert flag would fake a security control, violating the repo's verified-facts rule; removal fact and the CSP path are documented in config/settings/prod.py comments
 
 ### Pending Todos
 
@@ -92,6 +96,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-11-18T09:14:03.288Z
-Stopped at: Completed-01-02-PLAN.md
+Last session: 2026-11-18T09:48:26.926Z
+Stopped at: Completed 01-03-PLAN.md
 Resume file: None
