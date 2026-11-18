@@ -1,5 +1,5 @@
 """Настройки локальной разработки."""
-from .base import *  # noqa: F401,F403
+from .base import *
 
 DEBUG = True
 
@@ -7,4 +7,4 @@ DEBUG = True
 ALLOWED_HOSTS = ["localhost", "127.0.0.1", "web"]
 
 # WhiteNoise: отключает runserver-обработчик статики в dev (доки WhiteNoise).
-INSTALLED_APPS = ["whitenoise.runserver_nostatic", *INSTALLED_APPS]  # noqa: F405
+INSTALLED_APPS = ["whitenoise.runserver_nostatic", *INSTALLED_APPS]

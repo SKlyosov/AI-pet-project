@@ -21,7 +21,7 @@ def healthz(request):
         checks["db"] = "ok"
         cache.set("healthz:ping", "1", timeout=5)
         checks["cache"] = "ok"
-    except Exception:
+    except Exception:  # noqa: BLE001 — контракт /healthz: 503 при отказе ЛЮБОЙ зависимости
         return JsonResponse({"status": "fail", "checks": checks}, status=503)
     return JsonResponse({"status": "ok", "checks": checks})
 

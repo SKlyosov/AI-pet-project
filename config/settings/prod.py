@@ -3,7 +3,7 @@
 Наследует 12-factor базу (config.settings.base); включается через
 DJANGO_SETTINGS_MODULE=config.settings.prod.
 """
-from .base import *  # noqa: F401,F403
+from .base import *
 
 # «You must never enable debug in production» (Django deployment checklist, T-01-05).
 DEBUG = False
@@ -11,7 +11,7 @@ DEBUG = False
 # Pitfall 4: при DEBUG=False без подходящего ALLOWED_HOSTS любой health-probe
 # получает 400. Явный список из env, не звёздочка (T-01-06); дефолт ограничен
 # loopback-хостами и именем сервиса web внутри compose-сети.
-ALLOWED_HOSTS = env.list(  # noqa: F405
+ALLOWED_HOSTS = env.list(
     "DJANGO_ALLOWED_HOSTS",
     default=["localhost", "127.0.0.1", "web"],
 )
