@@ -1,12 +1,18 @@
 # AGENTS.md
 
-Greenfield product repo: private classifieds web service (RU-language). Planning artifacts live in `.planning/` (GSD: PROJECT.md, REQUIREMENTS.md, ROADMAP.md, STATE.md, config.json, research/) — initialized 2026-11-18 on branch `chore/gsd-init`. No source, manifests, or CI yet; OpenCode agent config lives in `.opencode/`. `README.md` is a one-line placeholder — project context lives in `.planning/PROJECT.md`.
+Greenfield product repo: private classifieds web service (RU-language). Planning artifacts live in `.planning/` (GSD: PROJECT.md, REQUIREMENTS.md, ROADMAP.md, STATE.md, config.json, research/). Source is a Django 5.2 modular-monolith skeleton (`config/` project, `apps/` modules) run via docker compose (PostgreSQL 18 + Redis 8, gunicorn + WhiteNoise); OpenCode agent config lives in `.opencode/`. Docs: `README.md` (RU quickstart), `docs/PRD.md`, `docs/adr/0001-choice-of-stack.md`. No CI pipeline yet.
 
 ## Ground rules
 
-- **Stack is deliberately undecided.** Do not assume a language, framework, or scaffold one without being asked. Roadmap Phase 1 is an explicit ADR user gate — the user picks from variants A/B/C in `.planning/research/STACK.md`.
+- **Stack is fixed by ADR-0001: Django 5.2 LTS + DRF, PostgreSQL 18, Redis 8, Python 3.13.** Modular monolith: 8 apps in `apps/` (`core` + 7 domain). Module boundary = table ownership: cross-app data access only via the owner's service function, never via another app's ORM models.
 - **No direct commits to `main`.** Work happens on `feat/<name>`, `fix/<name>`, or `chore/<name>` branches; commit messages follow Conventional Commits. Enforced by `.opencode/rules/git-main-protection.md`.
-- There is nothing to build, test, or lint yet. Don't invent commands — when real tooling lands, record its exact usage here.
+- **Docker-first workflow — the host has no `python`/`pip` in PATH** (only the `py` 3.14 launcher, outside the tested classifiers of gunicorn 27 / django-stubs 5.2.9). Every command runs through docker compose:
+  - start the stack: `docker compose up -d --build --wait` (liveness: `curl http://localhost:8000/healthz`)
+  - tests: `docker compose run --rm web pytest -x -q`
+  - lint: `docker compose run --rm web ruff check .`
+  - types: `docker compose run --rm web mypy .`
+  - skeleton acceptance, resets the dev DB: `scripts\verify_bootstrap.cmd` (Windows) / `scripts/verify_bootstrap.sh` (Unix)
+  - the container runs the code baked into the image — rebuild (`docker compose build web`) after changing code, then re-run `docker compose run`
 
 ## Planning workflow (GSD)
 
