@@ -1,0 +1,54 @@
+services:
+  db:
+    image: postgres:18-alpine
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-classifieds}
+      POSTGRES_USER: ${POSTGRES_USER:-classifieds}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?set in .env}
+    volumes:
+      # postgres:18+ требует маунт на /var/lib/postgresql (данные — в
+      # подкаталоге мажорной версии; docker-library/postgres PR #1259).
+      - pgdata:/var/lib/postgresql
+    ports:
+      # Хост-порт 15432: локальный PostgreSQL разработчика занимает 5432.
+      # Внутри compose-сети сервис по-прежнему db:5432. Только localhost (T-01-04).
+      - "127.0.0.1:15432:5432"
+    healthcheck:
+      # $$ — экранирование compose: переменная передаётся в контейнер как есть (Pitfall 3)
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
+      interval: 10s
+      retries: 5
+      start_period: 30s
+      timeout: 10s
+
+  cache:
+    image: redis:8-alpine
+    ports:
+      # Хост-порт 16379: локальный Redis разработчика занимает 6379.
+      # Внутри compose-сети сервис по-прежнему cache:6379. Только localhost (T-01-04).
+      - "127.0.0.1:16379:6379"
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      retries: 5
+
+  web:
+    build: "."
+    env_file: .env
+    ports:
+      - "8000:8000"
+    depends_on:
+      db:
+        condition: service_healthy # verbatim-паттерн доков Compose
+        restart: true
+      cache:
+        condition: service_healthy
+    healthcheck:
+      # в slim нет curl — python-urllib one-liner (Assumption A3)
+      test: ["CMD-SHELL", "python -c \"import urllib.request;urllib.request.urlopen('http://127.0.0.1:8000/healthz')\""]
+      interval: 15s
+      retries: 5
+      start_period: 20s
+
+volumes:
+  pgdata:

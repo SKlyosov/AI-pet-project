@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block title %}Частные объявления — скелет поднят{% endblock %}
+
+{% block content %}
+    <h1>Частные объявления</h1>
+    <p>Walking Skeleton поднят: Django (SSR) + PostgreSQL + Redis работают в docker compose.</p>
+    <p id="hit-counter">Просмотров: {{ hits }}</p>
+    <ul>
+        <li><a href="/healthz/">/healthz/</a> — health-check (PostgreSQL + Redis)</li>
+        <li><a href="/admin/">/admin/</a> — Django Admin (суперпользователь появится в Phase 2)</li>
+    </ul>
+{% endblock %}

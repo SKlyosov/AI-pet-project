@@ -1,0 +1,20 @@
+/* Минимум для скелета: системный шрифт, центрированный контейнер, отступы. */
+html {
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    line-height: 1.5;
+}
+
+body {
+    margin: 0;
+    background-color: #f4f4f5;
+    color: #18181b;
+}
+
+.container {
+    max-width: 720px;
+    margin: 2.5rem auto;
+    padding: 1.5rem 2rem;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
