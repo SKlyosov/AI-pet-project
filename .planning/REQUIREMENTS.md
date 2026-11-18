@@ -108,13 +108,46 @@ Which phases cover which requirements. Updated during roadmap creation.
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| (заполняется при создании roadmap) | | |
+| AUTH-01 | Phase 2 | Pending |
+| AUTH-02 | Phase 2 | Pending |
+| AUTH-03 | Phase 2 | Pending |
+| AUTH-04 | Phase 2 | Pending |
+| AUTH-05 | Phase 2 | Pending |
+| PROF-01 | Phase 2 | Pending |
+| PROF-02 | Phase 2 | Pending |
+| ADMN-01 | Phase 3 | Pending |
+| ADMN-02 | Phase 3 | Pending |
+| LIST-01 | Phase 4 | Pending |
+| LIST-02 | Phase 4 | Pending |
+| LIST-03 | Phase 4 | Pending |
+| LIST-04 | Phase 4 | Pending |
+| LIST-05 | Phase 4 | Pending |
+| LIST-06 | Phase 4 | Pending |
+| PHOTO-01 | Phase 5 | Pending |
+| PHOTO-02 | Phase 5 | Pending |
+| PAGE-01 | Phase 6 | Pending |
+| PAGE-02 | Phase 6 | Pending |
+| PAGE-03 | Phase 6 | Pending |
+| SRCH-01 | Phase 7 | Pending |
+| SRCH-02 | Phase 7 | Pending |
+| SRCH-03 | Phase 7 | Pending |
+| SRCH-04 | Phase 7 | Pending |
+| MSG-01 | Phase 8 | Pending |
+| MSG-02 | Phase 8 | Pending |
+| MSG-03 | Phase 8 | Pending |
+| MSG-04 | Phase 8 | Pending |
+| MSG-05 | Phase 8 | Pending |
+| MODR-01 | Phase 9 | Pending |
+| MODR-02 | Phase 9 | Pending |
+| MODR-03 | Phase 9 | Pending |
+| MODR-04 | Phase 9 | Pending |
 
 **Coverage:**
-- v1 requirements: 27 total
-- Mapped to phases: 0
-- Unmapped: 27 ⚠️ (до создания ROADMAP.md)
+- v1 requirements: 33 total (счётчик исправлён при создании roadmap: ранее указывалось 27; фактический подсчёт по REQ-ID — 5 AUTH + 2 PROF + 2 ADMN + 6 LIST + 2 PHOTO + 3 PAGE + 4 SRCH + 5 MSG + 4 MODR)
+- Mapped to phases: 33 из 33 ✓ (Phase 1 — инфраструктурная фаза без прямых требований; Phase 10 — приёмочная верификация требований фаз 2–9 без новых требований)
+- Unmapped: 0 ✓
 
 ---
 *Requirements defined: 2026-11-18*
 *Last updated: 2026-11-18 after initial definition (auto mode)*
+*Last updated: 2026-11-18 after roadmap creation (traceability: 33/33)*
