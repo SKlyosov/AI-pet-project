@@ -1,6 +1,6 @@
 # AGENTS.md
 
-Greenfield product repo: private classifieds web service (RU-language). Planning artifacts live in `.planning/` (GSD: PROJECT.md, REQUIREMENTS.md, ROADMAP.md, STATE.md, config.json, research/). Source is a Django 5.2 modular-monolith skeleton (`config/` project, `apps/` modules) run via docker compose (PostgreSQL 18 + Redis 8, gunicorn + WhiteNoise); OpenCode agent config lives in `.opencode/`. Docs: `README.md` (RU quickstart), `docs/PRD.md`, `docs/adr/0001-choice-of-stack.md`. No CI pipeline yet.
+Greenfield product repo: private classifieds web service (RU-language). Planning artifacts live in `.planning/` (GSD: PROJECT.md, REQUIREMENTS.md, ROADMAP.md, STATE.md, config.json, research/). Source is a Django 5.2 modular-monolith skeleton (`config/` project, `apps/` modules) run via docker compose (PostgreSQL 18 + Redis 8, gunicorn + WhiteNoise); OpenCode agent config lives in `.opencode/`. Docs: `README.md` (RU quickstart), `docs/PRD.md`, `docs/adr/0001-choice-of-stack.md`. CI: `.github/workflows/ci.yml` (GitHub Actions — one job per push/PR: ruff → mypy → `makemigrations --check --dry-run` → pytest, with postgres:18 + redis:8 services; first run happens on the first push of a branch).
 
 ## Ground rules
 

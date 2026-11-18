@@ -1,0 +1,59 @@
+# CI-пайплайн фазы 1: lint / typecheck / drift-check / tests на каждый пуш и PR.
+# Ступени ruff/mypy/pytest читают свои конфиги из pyproject.toml в корне репозитория.
+name: CI
+
+on: [push, pull_request]
+
+# Least privilege (T-01-07): verbatim-рекомендация actions/setup-python README.
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    services:
+      # verbatim-структура docs.github.com «creating-postgresql-service-containers»
+      postgres:
+        image: postgres:18
+        env:
+          POSTGRES_PASSWORD: postgres
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 5432:5432
+      redis:
+        # по аналогии с postgres-блоком (Assumption A10 из research)
+        image: redis:8-alpine
+        ports:
+          - 6379:6379
+    env:
+      # CI-значения, не секреты (T-01-07): раннер обращается к services через localhost.
+      DATABASE_URL: postgres://postgres:postgres@localhost:5432/postgres
+      REDIS_URL: redis://localhost:6379/0
+      DJANGO_SECRET_KEY: ci-insecure-not-a-secret
+      # manage.py-ступени (drift-check) идут через test-настройки с env-дефолтами localhost.
+      DJANGO_SETTINGS_MODULE: config.settings.test
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: '3.13' # verbatim-формат из README setup-python
+          cache: 'pip' # кэш попадает благодаря пинам == в requirements/*.txt
+          cache-dependency-path: requirements/*.txt
+      - name: Install
+        run: pip install -r requirements/dev.txt
+      # Каждая ступень — отдельный именованный step: падение краснит
+      # пайплайн поимённо (SC-3, D-06).
+      - name: Lint
+        run: ruff check .
+      - name: Typecheck
+        run: mypy .
+      # Drift-check ДО pytest (Pitfall 9: тихий дрейф моделей/миграций).
+      - name: Migrations drift check
+        run: python manage.py makemigrations --check --dry-run
+      # pytest-django создаёт тест-БД из миграций на каждом прогоне (SC-4).
+      - name: Tests
+        run: coverage run -m pytest -v && coverage report
