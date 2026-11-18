@@ -3,16 +3,16 @@ gsd_state_version: "1.0"
 current_phase: 1
 current_phase_name: Фундамент — выбор стека и скелет проекта
 status: executing
-stopped_at: Phase 1 context gathered
-last_updated: "2026-11-18T08:17:19.395Z"
+stopped_at: Completed-01-01-PLAN.md
+last_updated: "2026-11-18T08:36:25.489Z"
 last_activity: 2026-11-18
-last_activity_desc: "Roadmap создан: 10 фаз, 33/33 v1-требований распределены"
-state_head: cc5bb49f5779f223a8c25341d67c8cea7dcf6084
+last_activity_desc: Phase 1 execution started
+state_head: 6df56080d44ada811022a57e559af649f43900c9
 progress:
   total_phases: 10
   completed_phases: 0
   total_plans: 4
-  completed_plans: 0
+  completed_plans: 1
   percent: 0
 ---
 
@@ -23,14 +23,14 @@ progress:
 See: .planning/PROJECT.md (updated 2026-11-18)
 
 **Core value:** Объявление частного лица находят покупателя — оно не тонет среди коммерческих предложений.
-**Current focus:** Phase 1 — Фундамент: выбор стека (ADR по варианту A/B/C) и скелет проекта
+**Current focus:** Phase 1 — Фундамент — выбор стека и скелет проекта
 
 ## Current Position
 
-Phase: 1 (Фундамент — выбор стека и скелет проекта) — READY TO EXECUTE
-Plan: 0 of ? in current phase
+Phase: 1 (Фундамент — выбор стека и скелет проекта) — EXECUTING
+Plan: 2 of 4
 Status: Ready to execute
-Last activity: 2026-11-18 — Roadmap создан: 10 фаз, 33/33 v1-требований распределены
+Last activity: 2026-11-18 — Phase 1 execution started
 
 Progress: [░░░░░░░░░░] 0%
 
@@ -52,6 +52,11 @@ Progress: [░░░░░░░░░░] 0%
 - Trend: —
 
 *Updated after each plan completion*
+**Per-Plan Metrics:**
+
+| Plan | Duration | Tasks | Files |
+|------|----------|-------|-------|
+| Phase 01 P01 | 6min | 2 tasks | 8 files |
 
 ## Accumulated Context
 
@@ -64,6 +69,7 @@ Recent decisions affecting current work:
 - Roadmap: правило инвариантов — квота ≤10, hard delete и политика `ON DELETE SET NULL` + снапшот-поля закладываются в Phase 4 (владелец таблицы listings)
 - Roadmap: Phase 1 — user gate выбора стека (ADR) до какого-либо scaffold (правило AGENTS.md)
 - Roadmap: фазы 7 (поиск) и 8 (мессенджер) зависят от фазы 6 и могут исполняться параллельно (parallelization включён)
+- [Phase 01]: 01-01: ADR-0001 fixes Variant B (Django 5.2 LTS + DRF, PostgreSQL 18, Redis 8) as the user's explicit choice; all 14 deps pinned ==, mypy held at 1.19.1 (django-stubs 5.2.9 range)
 
 ### Pending Todos
 
@@ -81,6 +87,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-11-18T06:55:23.488Z
-Stopped at: Phase 1 context gathered
-Resume file: .planning/phases/01-fundament-vybor-steka-i-skelet-proekta/01-CONTEXT.md
+Last session: 2026-11-18T08:36:25.402Z
+Stopped at: Completed-01-01-PLAN.md
+Resume file: None
