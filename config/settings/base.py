@@ -39,6 +39,15 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "rest_framework",
     "apps.core",
+    # Доменные модули (D-04): граница модуля = владение своими таблицами;
+    # модели появляются в фазах-владельцах (Pattern 4 — без фейковой схемы).
+    "apps.accounts",
+    "apps.catalog",
+    "apps.geo",
+    "apps.listings",
+    "apps.search",
+    "apps.messaging",
+    "apps.moderation",
 ]
 
 MIDDLEWARE = [
