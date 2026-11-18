@@ -35,7 +35,7 @@ Decimal phases appear between their surrounding integers in numeric order.
   2. Свежий клон репозитория поднимается одной командой: docker-compose запускает PostgreSQL и Redis, приложение отвечает на health-check
   3. CI на каждый пуш выполняет lint, typecheck и тесты; упавшая ступень делает пайплайн красным
   4. Механизм миграций БД работает: первая миграция воспроизводимо накатывается на чистую базу
-**Plans**: 3/4 plans executed
+**Plans**: 4/4 plans executed
 
 Plans:
 **Wave 1**
@@ -48,7 +48,7 @@ Plans:
 - [x] 01-03-PLAN.md — Модульный монолит D-04: 7 приложений-каркасов, prod-настройки, README + AGENTS.md с командами тулинга
 
 **Wave 4** *(blocked on Wave 3 completion)*
-- [ ] 01-04-PLAN.md — CI GitHub Actions: ruff → mypy → drift-check → pytest на каждый пуш + зеркальный локальный прогон (SC-3, SC-4)
+- [x] 01-04-PLAN.md — CI GitHub Actions: ruff → mypy → drift-check → pytest на каждый пуш + зеркальный локальный прогон (SC-3, SC-4)
 
 ### Phase 2: Аккаунты и профиль (Identity & Profile)
 **Goal**: Пользователь получает аккаунт с подтверждённым e-mail и заполненным профилем; контакты продавца защищены PII-политикой с первого дня
@@ -176,7 +176,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6 → 7 → 8 →
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Фундамент — выбор стека и скелет проекта | 3/4 | In Progress | - |
+| 1. Фундамент — выбор стека и скелет проекта | 4/4 | In Progress | - |
 | 2. Аккаунты и профиль (Identity & Profile) | 0/? | Not started | - |
 | 3. Справочники администратора | 0/? | Not started | - |
 | 4. Объявления — жизненный цикл и квота | 0/? | Not started | - |

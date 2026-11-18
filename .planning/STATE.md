@@ -2,17 +2,17 @@
 gsd_state_version: "1.0"
 current_phase: 1
 current_phase_name: Фундамент — выбор стека и скелет проекта
-status: executing
-stopped_at: Completed 01-03-PLAN.md
-last_updated: "2026-11-18T09:48:26.993Z"
+status: verifying
+stopped_at: Completed 01-04-PLAN.md
+last_updated: "2026-11-18T10:06:46.646Z"
 last_activity: 2026-11-18
 last_activity_desc: Phase 1 execution started
-state_head: 6612428849f4c1b0b332eec916d6b07e665694e8
+state_head: bf5b7e24474f5725657980b6f2dd882b452af7df
 progress:
   total_phases: 10
   completed_phases: 0
   total_plans: 4
-  completed_plans: 3
+  completed_plans: 4
   percent: 0
 ---
 
@@ -29,7 +29,7 @@ See: .planning/PROJECT.md (updated 2026-11-18)
 
 Phase: 1 (Фундамент — выбор стека и скелет проекта) — EXECUTING
 Plan: 4 of 4
-Status: Ready to execute
+Status: Phase complete — ready for verification
 Last activity: 2026-11-18 — Phase 1 execution started
 
 Progress: [░░░░░░░░░░] 0%
@@ -59,6 +59,7 @@ Progress: [░░░░░░░░░░] 0%
 | Phase 01 P01 | 6min | 2 tasks | 8 files |
 | Phase 01 P02 | 26min | 2 tasks | 23 files |
 | Phase 01 P03 | 24min | 3 tasks | 23 files |
+| Phase 01 P04 | 6min | 2 tasks | 2 files |
 
 ## Accumulated Context
 
@@ -79,6 +80,8 @@ Recent decisions affecting current work:
 - [Phase 01]: D-04 materialized: 7 domain apps are empty AppConfig scaffolds (no models.py/migrations) — module boundaries are fixed while cheap, before any domain tables exist — Pattern 3 research: boundaries get more expensive with every foreign table; Pattern 4: first migration needs no fake schema — accounts gets custom User in Phase 2 before user data exists (ADR-0001)
 - [Phase 01]: docker compose run executes image-baked code, not the working tree — rebuild (docker compose build web) after code changes before re-running compose-run gates — Found when prod.py check hit ModuleNotFoundError on a freshly written module: the 01-02 image predated it; all Task gates were re-run green on the rebuilt image and the rule is documented in README/AGENTS.md
 - [Phase 01]: SECURE_BROWSER_XSS_FILTER from the plan is not set: the setting was removed in Django 4.0 and is absent from Django 5.2 (verified against django.conf.global_settings); XSS mitigation for template phases is Content-Security-Policy — Setting an inert flag would fake a security control, violating the repo's verified-facts rule; removal fact and the CSP path are documented in config/settings/prod.py comments
+- [Phase 01]: 01-04: CI workflow — один job с четырьмя поимёнными steps (ruff → mypy → makemigrations --check --dry-run → pytest) на services postgres:18+redis:8, least-privilege contents:read; DJANGO_SETTINGS_MODULE=config.settings.test закреплён в job env, чтобы manage.py-ступень drift-check шла через те же test-настройки, что pytest читает из pyproject; зелёность на GitHub фиксируется первым пушем ветки (/gsd-verify-work)
+- [Phase 01]: 01-04: локальное зеркало CI зелёное без правок pyproject.toml — все четыре ступени (ruff/mypy/drift-check/pytest, 2 passed) exit 0 в docker compose run на конфигах 01-01; workflow не ссылается на неработающие команды
 
 ### Pending Todos
 
@@ -96,6 +99,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-11-18T09:48:26.926Z
-Stopped at: Completed 01-03-PLAN.md
+Last session: 2026-11-18T10:06:46.565Z
+Stopped at: Completed 01-04-PLAN.md
 Resume file: None
