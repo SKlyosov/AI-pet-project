@@ -3,16 +3,12 @@ status: complete
 phase: 01-Фундамент — выбор стека и скелет проекта
 source: [01-VERIFICATION.md]
 started: 2026-04-01T12:10:00Z
-updated: 2026-11-23T18:57:30Z
+updated: 2026-11-23T19:08:53.588Z
 ---
 
 ## Current Test
 
-number: —
-name: —
-expected: |
-  —
-awaiting: — (all tests resolved)
+[testing complete]
 
 ## Tests
 
@@ -26,7 +22,7 @@ result: pass (2026-11-23T18:57:11Z) — прогон #3 (run id 45243628418, com
 
 ### 3. Решить расхождение Mode: mvp vs формат цели фазы
 expected: Либо переформулировать цель фазы (/gsd-mvp-phase 1 — «As a…, I want…, so that…»), либо осознанно принять стандартную goal-backward верификацию (уже выполнена, 21/22) и/или снять Mode: mvp с инфраструктурных фаз ROADMAP
-result: resolved (decision) — принято решение о перестройке ROADMAP на горизонтальные слои (UX → UI → бэкенд): Mode: mvp снимается с фаз 1–3 (инфраструктура/дизайн, не User-Story форма), сохраняется на бэкенд-фазах; для фазы 1 принимается выполненная goal-backward верификация. Формально закрывается при /gsd-verify-work 1.
+result: pass (decision) — принято решение о перестройке ROADMAP на горизонтальные слои (UX → UI → бэкенд): Mode: mvp снимается с фаз 1–3 (инфраструктура/дизайн, не User-Story форма), сохраняется на бэкенд-фазах; для фазы 1 принимается выполненная goal-backward верификация (21/22).
 
 ## Summary
 
