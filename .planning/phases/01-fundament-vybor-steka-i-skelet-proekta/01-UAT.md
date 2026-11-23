@@ -1,18 +1,18 @@
 ---
-status: testing
+status: complete
 phase: 01-Фундамент — выбор стека и скелет проекта
 source: [01-VERIFICATION.md]
 started: 2026-04-01T12:10:00Z
-updated: 2026-04-01T12:10:00Z
+updated: 2026-11-23T18:57:30Z
 ---
 
 ## Current Test
 
-number: 3
-name: Решить расхождение Mode: mvp vs формат цели фазы
+number: —
+name: —
 expected: |
-  Закрывается решением по перестройке ROADMAP: Mode: mvp снимается с инфраструктурно-дизайнерских фаз 1–3
-awaiting: user confirmation at phase close
+  —
+awaiting: — (all tests resolved)
 
 ## Tests
 
@@ -22,7 +22,7 @@ result: pass (2026-04-01T14:05:00Z, agent) — `docker compose stop db` → curl
 
 ### 2. Первый прогон CI на GitHub
 expected: Запушить ветку (home-work-2, переименована из chore/skeleton) в origin; job check зелёный поимённо: Lint (ruff) → Typecheck (mypy) → Migrations drift check → Tests; actions/checkout@v7 и actions/setup-python@v7 резолвятся
-result: in_progress — прогон #1 (94cde32, push пользователя) упал на ступени Lint: ruff EXE001 (manage.py имеет shebang, но закоммичен неисполняемым; в docker-образе маскировалось chmod-шагом Dockerfile). Диагностировано точным воспроизведением CI-дерева в контейнере; фикс — коммит 819fb16 (git update-index --chmod=+x manage.py) на ветке gsd/phase-2-ux-dizayn-vsego-produkta. Ожидает зелёного прогона после пуша ветки с фиксом.
+result: pass (2026-11-23T18:57:11Z) — прогон #3 (run id 45243628418, commit acfd1ce, ветка gsd/phase-1-fundament-vybor-steka-i-skelet-proekta): conclusion success; все ступени зелёные поимённо — Lint (ruff) → Typecheck (mypy) → Migrations drift check → Tests (2 passed, services postgres:18 + redis:8-alpine). Потребовалось два фикса: 819fb16 (manage.py exec-бит в git-индексе, ruff EXE001) и acfd1ce (test.py → StaticFilesStorage, развязка тестов от collectstatic-манифеста WhiteNoise). Прогоны #1–#2 красные — история сохранена в Actions.
 
 ### 3. Решить расхождение Mode: mvp vs формат цели фазы
 expected: Либо переформулировать цель фазы (/gsd-mvp-phase 1 — «As a…, I want…, so that…»), либо осознанно принять стандартную goal-backward верификацию (уже выполнена, 21/22) и/или снять Mode: mvp с инфраструктурных фаз ROADMAP
@@ -31,9 +31,9 @@ result: resolved (decision) — принято решение о перестр�
 ## Summary
 
 total: 3
-passed: 1
+passed: 3
 issues: 0
-pending: 1
+pending: 0
 skipped: 0
 blocked: 0
 
