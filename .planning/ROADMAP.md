@@ -12,7 +12,7 @@
 
 Decimal phases appear between their surrounding integers in numeric order.
 
-- [ ] **Phase 1: Фундамент — выбор стека и скелет проекта** - ADR по варианту A/B/C из research, скелет монолита, docker-compose, CI, миграции
+- [x] **Phase 1: Фундамент — выбор стека и скелет проекта** - ADR по варианту A/B/C из research, скелет монолита, docker-compose, CI, миграции (completed 2026-11-23)
 - [ ] **Phase 2: Аккаунты и профиль (Identity & Profile)** - Регистрация с подтверждением e-mail, вход/выход/сброс пароля, профиль и PII-политика контактов
 - [ ] **Phase 3: Справочники администратора (рубрикатор и города)** - Иерархическое дерево категорий и справочник городов: admin-CRUD с защитой от циклов и дублей
 - [ ] **Phase 4: Объявления — жизненный цикл и квота** - CRUD с черновиками, публикация с атомарной квотой ≤10, hard delete, инварианты схемы для будущих фаз
@@ -35,7 +35,7 @@ Decimal phases appear between their surrounding integers in numeric order.
   2. Свежий клон репозитория поднимается одной командой: docker-compose запускает PostgreSQL и Redis, приложение отвечает на health-check
   3. CI на каждый пуш выполняет lint, typecheck и тесты; упавшая ступень делает пайплайн красным
   4. Механизм миграций БД работает: первая миграция воспроизводимо накатывается на чистую базу
-**Plans**: 4/4 plans executed
+**Plans**: 4/4 plans complete
 
 Plans:
 **Wave 1**
@@ -176,7 +176,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6 → 7 → 8 →
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Фундамент — выбор стека и скелет проекта | 4/4 | In Progress | - |
+| 1. Фундамент — выбор стека и скелет проекта | 4/4 | Complete    | 2026-11-23 |
 | 2. Аккаунты и профиль (Identity & Profile) | 0/? | Not started | - |
 | 3. Справочники администратора | 0/? | Not started | - |
 | 4. Объявления — жизненный цикл и квота | 0/? | Not started | - |

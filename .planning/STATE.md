@@ -1,43 +1,43 @@
 ---
 gsd_state_version: "1.0"
-current_phase: 1
-current_phase_name: Фундамент — выбор стека и скелет проекта
-status: verifying
-stopped_at: Completed 01-04-PLAN.md
-last_updated: "2026-11-18T10:06:46.646Z"
-last_activity: 2026-11-18
-last_activity_desc: Phase 1 execution started
-state_head: bf5b7e24474f5725657980b6f2dd882b452af7df
+current_phase: 2
+current_phase_name: Аккаунты и профиль (Identity & Profile)
+status: planning
+stopped_at: Phase 1 complete, ready to plan Phase 2
+last_updated: "2026-11-23T19:22:34.792Z"
+last_activity: 2026-11-23
+last_activity_desc: Phase 1 complete, transitioned to Phase 2
+state_head: f553a345f00a5ade27281294ab87cd1dc76b598b
 progress:
   total_phases: 10
-  completed_phases: 0
+  completed_phases: 1
   total_plans: 4
   completed_plans: 4
-  percent: 0
+  percent: 10
 ---
 
 # Project State
 
 ## Project Reference
 
-See: .planning/PROJECT.md (updated 2026-11-18)
+See: .planning/PROJECT.md (updated 2026-11-23)
 
 **Core value:** Объявление частного лица находят покупателя — оно не тонет среди коммерческих предложений.
-**Current focus:** Phase 1 — Фундамент — выбор стека и скелет проекта
+**Current focus:** Phase 2 — перед планированием ожидается перестройка ROADMAP на UX-first (решение пользователя; см. claude-mem #352)
 
 ## Current Position
 
-Phase: 1 (Фундамент — выбор стека и скелет проекта) — EXECUTING
-Plan: 4 of 4
-Status: Phase complete — ready for verification
-Last activity: 2026-11-18 — Phase 1 execution started
+Phase: 2 — Аккаунты и профиль (Identity & Profile)
+Plan: Not started
+Status: Ready to plan
+Last activity: 2026-11-23 — Phase 1 complete, transitioned to Phase 2
 
-Progress: [░░░░░░░░░░] 0%
+Progress: [█░░░░░░░░░] 10%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 0
+- Total plans completed: 4
 - Average duration: —
 - Total execution time: —
 
@@ -45,7 +45,7 @@ Progress: [░░░░░░░░░░] 0%
 
 | Phase | Plans | Total | Avg/Plan |
 |-------|-------|-------|----------|
-| - | - | - | - |
+| 1 | 4 | - | - |
 
 **Recent Trend:**
 - Last 5 plans: —
@@ -89,7 +89,7 @@ None yet.
 
 ### Blockers/Concerns
 
-- [Phase 1]: выбор стека A/B/C открыт — блокирует все фазы до ADR (осознанный user gate, не дефект)
+- [Roadmap]: перестройка на горизонтальные слои (UX → UI → бэкенд) решена пользователем, но ещё не применена к ROADMAP.md — первый шаг фазы 2; вместе с ней снимается Mode: mvp с фаз 1–3 и вводится запрет Python-правок до фазы UI
 
 ## Deferred Items
 
@@ -99,6 +99,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-11-18T10:06:46.565Z
-Stopped at: Completed 01-04-PLAN.md
+Last session: 2026-11-23T19:25:00Z
+Stopped at: Phase 1 complete (verified passed 22/22, UAT 3/3, CI green); next — ROADMAP restructure to UX-first, then /gsd-discuss-phase 2
 Resume file: None

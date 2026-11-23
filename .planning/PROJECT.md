@@ -49,14 +49,17 @@
 - **Scale**: до 1 000 000 пользователей — архитектура должна проектироваться под нагрузку (PRD, НФТ)
 - **Data**: снятие с публикации = удаление объявления из базы данных; архива/soft-delete для объявлений нет (PRD)
 - **Limits**: заголовок ≤ 128 символов; описание ≤ 512 символов; сообщение ≤ 512 символов; ≤ 10 опубликованных объявлений на пользователя одновременно (PRD)
-- **Tech stack**: не выбран — правило репозитория (AGENTS.md): не выбирать язык/фреймворк без явного согласия пользователя; варианты предложит фаза research
+- **Tech stack**: закреплён ADR-0001 — Django 5.2 LTS + DRF, PostgreSQL 18, Redis 8, Python 3.13, gunicorn WSGI, WhiteNoise; Django Admin как админ-слой; SSR через Django-шаблоны (без SPA)
 
 ## Key Decisions
 
 | Decision | Rationale | Outcome |
 |----------|-----------|---------|
-| GSD: granularity=fine, parallel execution, все агенты (research, plan check, verifier, drift guard), model_profile=inherit | Выбор пользователя при инициализации (auto-mode) | — Pending |
-| Стек не фиксируется до review результатов research | Правило AGENTS.md; пользователь выбирает из рекомендаций | — Pending |
+| GSD: granularity=fine, parallel execution, все агенты (research, plan check, verifier, drift guard), model_profile=inherit | Выбор пользователя при инициализации (auto-mode) | ✓ Принято |
+| Стек: Django 5.2 LTS + DRF + PostgreSQL 18 + Redis 8, Python 3.13, gunicorn, WhiteNoise, Django Admin как админ-слой, SSR через Django-шаблоны | Явный выбор пользователя из вариантов A/B/C research (ADR-0001, user gate по правилу AGENTS.md) | ✓ Accepted — Phase 1 verified (22/22) |
+| Горизонтальная перестройка ROADMAP: UX (дизайн, DESIGN.md) → UI (страницы на фикстурах) → бэкенд (прежние фазы 2–9) → запускная готовность | Решение пользователя (2026-11-23): весь UX/UI создаются раньше логики; mvp-маркер снимается с фаз 1–3 | — Pending (применить к ROADMAP первым шагом фазы 2) |
+| Запрет Python-правок до фазы UI | Решение пользователя (2026-11-23): фаза UX — чистые документы; первые Python-изменения — стаб-view фазы UI | — Active |
+| Ветвление: branching_strategy=phase (gsd/phase-{N}-{slug}) | Решение пользователя (2026-11-23) при переименовании рабочей ветки | ✓ Active |
 
 ## Evolution
 
@@ -76,4 +79,4 @@ This document evolves at phase transitions and milestone boundaries.
 4. Update Context with current state
 
 ---
-*Last updated: 2026-11-18 after initialization*
+*Last updated: 2026-11-23 after Phase 1 (verified, transitioned; UX-first restructure pending)*
