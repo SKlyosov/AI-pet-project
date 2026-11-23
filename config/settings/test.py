@@ -13,6 +13,17 @@ env = environ.Env()
 # Pitfall 7: без этого WhiteNoise замедляет каждый прогон pytest.
 WHITENOISE_AUTOREFRESH = True
 
+# Тесты не зависят от collectstatic. ManifestStaticFilesStorage из base
+# требует staticfiles.json с хэшами; без предварительного collectstatic
+# (CI-раннер его не запускает) тег {% static %} в шаблонах падает с
+# ValueError: Missing staticfiles manifest entry. В тестах хэши не нужны.
+STORAGES = {
+    **STORAGES,
+    "staticfiles": {
+        "BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage",
+    },
+}
+
 PASSWORD_HASHERS = ["django.contrib.auth.hashers.MD5PasswordHasher"]
 
 DATABASES = {
